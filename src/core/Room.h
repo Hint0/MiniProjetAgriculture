@@ -8,13 +8,15 @@ enum RoomShape {Basic, Big, Corridor, small };
 class Room 
 {
  private:
-  std::vector<Room*> adjacentRooms;
+  std::vector<int> adjacentRoomsIndexes;
   RoomShape shape;
  public:
   Room(int x, int y, int distFromStart);
-  void Draw(sf::RenderWindow* window) const;
+  void Draw(sf::RenderWindow* window, int index, sf::Color color) const;
   std::vector<sf::Vector2i> GetDoorPositions();
-  void AddAdjacentRoom(Room* room, sf::Vector2i position);
+  void AddAdjacentRoom(int index, sf::Vector2i position);
+
+  static std::vector<sf::Vector2i> GetDoorPositionsByShape(RoomShape shape);
 
   int x, y;
   int distFromStart;

@@ -3,10 +3,12 @@
 #include <DungeonGenerator.h>
 
 #include <iostream>
+#include <random>
 
 int myMain()
 {
-	DungeonGenerator generator(sf::Vector2f{ 75, 100 }, sf::Vector2f{ 5, 5 });
+	std::random_device rd;
+	DungeonGenerator generator(rd(), 30, 8);
 	generator.GenerateLayout();
 
 	sf::RenderWindow window{ sf::VideoMode({800, 600}), "Dungeon Generator" };
