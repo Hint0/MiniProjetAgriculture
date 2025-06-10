@@ -168,10 +168,10 @@ float DungeonGenerator::RandomPercent()
 
 void DungeonGenerator::Draw(sf::RenderWindow* window)
 {
-	rooms[0]->Draw(window, 0, sf::Color::Green);
+	rooms[0]->DrawLayout(window, 0, sf::Color::Green);
 
 	for (int i = 1; i < rooms.size(); ++i)
 	{
-		rooms[i]->Draw(window, i, i == exitRoomIndex ? sf::Color::Red : sf::Color::Blue);
+		rooms[i]->DrawLayout(window, i, i == exitRoomIndex ? sf::Color::Red : sf::Color::Blue);
 	}
 }

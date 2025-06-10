@@ -1,0 +1,343 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Up.tmx",
+    "expandedProjectPaths": [
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps",
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
+    "fileStates": {
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButDown.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.164046479836,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButLeft.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.164046479836,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButRight.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.9842788790156,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButUp.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.9842788790156,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllExits.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.164046479836,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Down.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.164046479836,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_DownLeft.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.9842788790156,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_DownRight.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.9842788790156,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Left.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.9842788790156,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_LeftRight.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.9842788790156,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Right.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.164046479836,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Up.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.9842788790156,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_UpDown.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.1640464798359,
+                "y": 479.835953520164
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_UpLeft.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.1640464798359,
+                "y": 479.835953520164
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_UpRight.tmx": {
+            "scale": 0.6095833333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 720.164046479836,
+                "y": 713.6021872863978
+            }
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Farm_Crop.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Farm_Crop_2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Farm_Terrain.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Tmxlite_SampleSFML/Tmxlite_SampleSFML/resources/demo.tmx": {
+            "scale": 0.8955729166666666,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 449.4329747019483,
+                "y": 256.2605408548997
+            }
+        },
+        "D:/Tmxlite_SampleSFML/Tmxlite_SampleSFML/resources/demo.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "D:/Tmxlite_SampleSFML/Tmxlite_SampleSFML/resources/images/tilemap/platform.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Default_AllButDown.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_AllButLeft.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_AllButRight.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_AllButUp.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_AllExits.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_Down.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_DownLeft.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_DownRight.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_Left.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_LeftRight.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_Right.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_Up.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_UpDown.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_UpLeft.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "Default_UpRight.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 719.4078947368421,
+                "y": 479.6052631578947
+            }
+        },
+        "FarmDungeon.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "Farm_Crop.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Farm_Crop_2.tsx": {
+            "scaleInDock": 1
+        },
+        "Farm_Props.tsx": {
+            "scaleInDock": 1
+        },
+        "Farm_Terrain.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Test.tmx": {
+            "scale": 0.6755555555555556,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 631.3322368421052,
+                "y": 479.6052631578947
+            }
+        }
+    },
+    "last.externalTilesetPath": "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/tilemap",
+    "last.imagePath": "C:/Users/Fran/Downloads/vectoraith_tileset_farming_sim_essentials/48x48/Tilesets (Compact)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 48,
+    "map.tileWidth": 48,
+    "openFiles": [
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_UpDown.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_UpLeft.tmx",
+        "Test.tmx",
+        "D:/Tmxlite_SampleSFML/Tmxlite_SampleSFML/resources/demo.tmx",
+        "Farm_Crop.tsx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButRight.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButUp.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_DownLeft.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_DownRight.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Left.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_LeftRight.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Up.tmx"
+    ],
+    "project": "FarmDungeon.tiled-project",
+    "recentFiles": [
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_UpDown.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_UpLeft.tmx",
+        "Test.tmx",
+        "D:/Tmxlite_SampleSFML/Tmxlite_SampleSFML/resources/demo.tmx",
+        "Farm_Crop.tsx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButRight.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_AllButUp.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_DownLeft.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_DownRight.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Left.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_LeftRight.tmx",
+        "C:/Users/Fran/source/repos/MiniProjetAgriculture/res/maps/Default_Up.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 48,
+        "width": 48
+    }
+}

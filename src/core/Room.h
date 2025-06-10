@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
+#include <tmxlite/Map.hpp>
 
 enum RoomShape {Basic, Big, Corridor, small };
 
@@ -12,7 +13,8 @@ class Room
   RoomShape shape;
  public:
   Room(int x, int y, int distFromStart);
-  void Draw(sf::RenderWindow* window, int index, sf::Color color) const;
+  void DrawLayout(sf::RenderWindow* window, int index, sf::Color color) const;
+  void DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset) const;
   std::vector<sf::Vector2i> GetDoorPositions();
   void AddAdjacentRoom(int index, sf::Vector2i position);
 
@@ -22,4 +24,5 @@ class Room
   int distFromStart;
   std::vector<sf::Vector2i> avalaibleDoors;
   static sf::Vector2i Size;
+  tmx::Map map;
 };

@@ -1,5 +1,6 @@
 #include "Room.h"
 
+//sf::Vector2i Room::Size = sf::Vector2i(1440, 960);
 sf::Vector2i Room::Size = sf::Vector2i(40, 30);
 
 Room::Room(int x, int y, int distFromStart)
@@ -11,7 +12,7 @@ Room::Room(int x, int y, int distFromStart)
 {
 }
 
-void Room::Draw(sf::RenderWindow* window, int index, sf::Color color) const
+void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color) const
 {
 	sf::RectangleShape shape(
 		sf::Vector2f(static_cast<float>(x), static_cast<float>(y)));
@@ -20,17 +21,23 @@ void Room::Draw(sf::RenderWindow* window, int index, sf::Color color) const
 	float yPos = static_cast<float>(window->getSize().y / 2. - y);
 
 	shape.setPosition({ xPos, yPos });
-	shape.setSize(sf::Vector2f(Room::Size.x - 5, Room::Size.y - 5));
+	shape.setSize(sf::Vector2f(35, 25));
 	shape.setOutlineThickness(2);
 	shape.setOutlineColor(sf::Color::Black);
 	window->draw(shape);
 
-	sf::Font font("res/arial.ttf");
-	sf::Text text(font, std::to_string(index));
+	sf::Font font;
+	font.loadFromFile("res/arial.ttf");
+	sf::Text text(std::to_string(index), font);
 	text.setFillColor(sf::Color::Black);
 	text.setPosition({ xPos, yPos });
 	text.setCharacterSize(26);
 	window->draw(text);
+}
+
+void Room::DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset) const
+{
+
 }
 
 std::vector<sf::Vector2i> Room::GetDoorPositions()
