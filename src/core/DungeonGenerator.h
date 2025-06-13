@@ -10,9 +10,7 @@ class DungeonGenerator
   int maxRooms;
   int longestPath;
   std::vector<std::unique_ptr<Room>> rooms;
-  bool bExitRoomGenerated;
   unsigned int seed;
-
   int exitRoomIndex;
 
  public:
@@ -20,5 +18,6 @@ class DungeonGenerator
   void GenerateLayout();
   bool GenerateNextRoom(Room* previousRoom, sf::Vector2i direction, float baseChance);
   float RandomPercent();
-  void Draw(sf::RenderWindow* window);
+  void DrawLayout(sf::RenderWindow* window);
+  void DrawMap(sf::RenderWindow* window, sf::Vector2f offset);
 };

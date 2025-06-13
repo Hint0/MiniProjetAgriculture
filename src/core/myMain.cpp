@@ -10,20 +10,13 @@
 int myMain()
 {
 	std::random_device rd;
-	DungeonGenerator generator(rd(), 30, 8);
+	DungeonGenerator generator(2462855252/*rd()*/, 30, 8);
 	generator.GenerateLayout();
 
 	sf::RenderWindow window{ sf::VideoMode({1440, 960}), "Dungeon Generator" };
 	window.setFramerateLimit(30);
 
-	tmx::Map map;
-	map.load("res/maps/Default_AllButLeft.tmx");
-
-	MapLayer layerZero(map, 0);
-	MapLayer layerOne(map, 1);
-
-	//layerZero.setOffset(sf::Vector2f(100, 0));
-	//layerOne.setOffset(sf::Vector2f(100, 0));
+	sf::Vector2f offset( 0.f, 0.f );
 	
 	while (window.isOpen())
 	{
@@ -34,6 +27,26 @@ int myMain()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Up)
+				{
+					offset.y += 100.f;
+				}
+				else if (event.key.code == sf::Keyboard::Down)
+				{
+					offset.y -= 100.f;
+				}
+				else if (event.key.code == sf::Keyboard::Left)
+				{
+					offset.x += 100.f;
+				}
+				else if (event.key.code == sf::Keyboard::Right)
+				{
+					offset.x -= 100.f;
+				}
+			}
+
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed) window.close();
 
@@ -47,10 +60,9 @@ int myMain()
 				window.setView(sf::View(visibleArea));
 			}
 		}
-		window.clear(sf::Color::White);
-		generator.Draw(&window);
-		//window.draw(layerZero);
-		//window.draw(layerOne);
+		window.clear(sf::Color::Black);
+		generator.DrawMap(&window, offset);
+		generator.DrawLayout(&window);
 		window.display();
 	}
 
