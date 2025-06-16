@@ -34,3 +34,6 @@
 # Ignore directory used by Visual Studio for project generation
 .vs
 out
+
+/res/tilemap/FarmDungeon.tiled-project
+/res/tilemap/FarmDungeon.tiled-session
