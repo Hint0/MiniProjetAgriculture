@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ctime>
 #include "Bullet.hpp"
 #include "Enemy.hpp"
 

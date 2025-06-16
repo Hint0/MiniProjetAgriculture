@@ -13,5 +13,6 @@ class Gun : public Weapon {
 
  private:
 
+  sf::Clock cooldownCounter;
 
 };

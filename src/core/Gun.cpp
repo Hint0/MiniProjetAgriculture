@@ -18,11 +18,16 @@ std::vector<Bullet> Gun::fire(const sf::Vector2f& position,const sf::Vector2f& c
   sf::Vector2f normDir = {direction.x / mag, direction.y / mag};
   sf::Vector2f velocity = {normDir.x * bulletSpeed, normDir.y * bulletSpeed};
 
-  Bullet b(bulletRadius, velocity, bulletSpeed, bulletColor);
-  b.setPosition(position);
-  //Fait un pushback dans bullets
-  updateBullets(b);
-
+  if (cooldownCounter.getElapsedTime().asSeconds() > fireRate)
+  {
+      Bullet b(bulletRadius, velocity, bulletSpeed, bulletColor);
+      b.setPosition(position);
+      //Fait un pushback dans bullets
+      updateBullets(b);
+      //Relance l'horloge
+      cooldownCounter.restart();
+      return getBullets();
+  }
   return getBullets();
 }
 

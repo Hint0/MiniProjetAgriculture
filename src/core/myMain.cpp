@@ -26,7 +26,7 @@ int myMain()
 	window.setFramerateLimit(30);
 
 	Player player(10.f, 10.f, 25.f, sf::Color::Red);
-	Gun gun(5, 10, sf::Color::Yellow, 5);
+	Gun gun(0.2, 10, sf::Color::Yellow, 5);
 
 	sf::Vector2f offset(0.f, 0.f);
 
