@@ -10,6 +10,7 @@ class Player : public Character {
   void playerMovement(void);
   sf::CircleShape getShape(void);
   sf::Vector2f getPosition(void);
+  void setPosition(sf::Vector2f pos);
 
 
  private:

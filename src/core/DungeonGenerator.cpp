@@ -48,10 +48,13 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 {
 	//First check the distance from the starting room
 	//The exit room of the dungeon should be the farest from the start
-	if (exitRoomIndex == -1 && previousRoom->distFromStart + 1 > longestPath)
+	if (exitRoomIndex == -1)
 	{
-		exitRoomIndex = rooms.size() - 1;
-		return false;
+		if (previousRoom->distFromStart + 1 > longestPath)
+		{
+			exitRoomIndex = rooms.size() - 1;
+			return false;
+		}
 	}
 	else if (previousRoom->distFromStart + 1 > longestPath - 1 || rooms.size() >= maxRooms)
 	{
@@ -154,11 +157,13 @@ float DungeonGenerator::RandomPercent()
 
 void DungeonGenerator::DrawLayout(sf::RenderWindow* window)
 {
-	rooms[0]->DrawLayout(window, 0, sf::Color::Green);
+	sf::Color roomColor(200, 200, 200, 50);
+
+	rooms[0]->DrawLayout(window, 0, roomColor);
 
 	for (int i = 1; i < rooms.size(); ++i)
 	{
-		rooms[i]->DrawLayout(window, i, i == exitRoomIndex ? sf::Color::Red : sf::Color::Blue);
+		rooms[i]->DrawLayout(window, i, i == exitRoomIndex ? roomColor : roomColor);
 	}
 }
 
@@ -170,4 +175,9 @@ void DungeonGenerator::DrawMap(sf::RenderWindow* window, sf::Vector2f offset)
 		room->DrawRoom(window, counter, offset);
 		counter++;
 	}
+}
+
+Room* DungeonGenerator::GetRoom(int index)
+{
+	return rooms[index].get();
 }

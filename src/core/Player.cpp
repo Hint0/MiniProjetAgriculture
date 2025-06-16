@@ -25,3 +25,8 @@ sf::Vector2f Player::getPosition(void) {
     return sf::Vector2f(player.getPosition().x + player.getRadius(),
                         player.getPosition().y + player.getRadius());
 }
+
+void Player::setPosition(sf::Vector2f pos)
+{
+	player.setPosition(pos.x - player.getRadius(), pos.y - player.getRadius());
+}

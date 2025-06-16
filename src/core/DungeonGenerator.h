@@ -20,4 +20,5 @@ class DungeonGenerator
   float RandomPercent();
   void DrawLayout(sf::RenderWindow* window);
   void DrawMap(sf::RenderWindow* window, sf::Vector2f offset);
+  Room* GetRoom(int index);
 };

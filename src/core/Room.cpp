@@ -21,7 +21,7 @@ void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color) cons
 	shape.setPosition({ xPos, yPos });
 	shape.setSize(sf::Vector2f(35, 25));
 	shape.setOutlineThickness(2);
-	shape.setOutlineColor(sf::Color::Black);
+	shape.setOutlineColor(sf::Color(240, 240, 240, 50));
 	window->draw(shape);
 
 	sf::Font font;

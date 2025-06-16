@@ -33,7 +33,7 @@ void Weapon::updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies)
       // Not out of bounds... So collision
       for (size_t k = 0; k < enemies->size(); k++) {
         // Collision
-        if (bullets[i].getBullet().getGlobalBounds().findIntersection(
+        if (bullets[i].getBullet().getGlobalBounds().intersects(
                 (*enemies)[k].getShape().getGlobalBounds())) {
           bullets.erase(bullets.begin() + i);
           enemies->erase(enemies->begin() + k);
