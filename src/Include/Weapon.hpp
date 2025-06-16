@@ -1,0 +1,30 @@
+#pragma once
+
+#include "Bullet.hpp"
+#include "Enemy.hpp"
+
+class Weapon {
+ public:
+  Weapon(float fireRate, float bulletSpeed, sf::Color bulletColor, float bulletRadius);
+
+  void updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies);
+
+  void updateBullets(Bullet bullet);
+
+  std::vector<Bullet> getBullets(void);
+
+  virtual ~Weapon() = default;
+
+  virtual std::vector<Bullet> fire(const sf::Vector2f& position,
+                                   const sf::Vector2f& cible) = 0;
+
+  float getFireRate(void);
+
+
+ protected:
+  std::vector<Bullet> bullets;
+  float fireRate;
+  float bulletSpeed;
+  sf::Color bulletColor;
+  float bulletRadius;
+};
