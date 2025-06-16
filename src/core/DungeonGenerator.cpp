@@ -10,7 +10,8 @@ DungeonGenerator::DungeonGenerator(unsigned int seed, int maxRooms, int longestP
 	: seed{ seed },
 	maxRooms{ maxRooms },
 	longestPath{ longestPath },
-	exitRoomIndex{ -1 }
+	exitRoomIndex{ -1 },
+	currentRoom{ nullptr }
 {
 }
 
@@ -19,13 +20,14 @@ void DungeonGenerator::GenerateLayout()
 	// Generate first room
 	rooms.push_back(make_unique<Room>(0, 0, 0));
 
-	Room* room = rooms.back().get();
+	//Initialize the current room to the first one
+	currentRoom = rooms.back().get();
 
 	float chanceToGenerate = 0.25;
 
-	for (const auto& pos : room->avalaibleDoors)
+	for (const auto& pos : currentRoom->avalaibleDoors)
 	{
-		if (GenerateNextRoom(room, pos, chanceToGenerate))
+		if (GenerateNextRoom(currentRoom, pos, chanceToGenerate))
 		{
 			chanceToGenerate = 0.25;
 		}
@@ -110,6 +112,14 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 
 	if (rd > chanceToGenerate) return false;
 
+	// Update layout size, used to draw mini map correctly
+	if (layoutSize.x > x) layoutSize.x = x;
+	if (layoutSize.y > y)
+	{
+		layoutSize.y = y;
+		cout << layoutSize.y << endl;
+	}
+
 	unique_ptr<Room> r = make_unique<Room>(x, y, previousRoom->distFromStart + 1);
 
 	int lowestDistance = r->distFromStart - 1;
@@ -157,13 +167,19 @@ float DungeonGenerator::RandomPercent()
 
 void DungeonGenerator::DrawLayout(sf::RenderWindow* window)
 {
-	sf::Color roomColor(200, 200, 200, 50);
+	sf::Color roomColor(200, 200, 200, 100);
+	sf::Color currentRoomColor(50, 50, 50, 100);
 
-	rooms[0]->DrawLayout(window, 0, roomColor);
-
-	for (int i = 1; i < rooms.size(); ++i)
+	for (int i = 0; i < rooms.size(); ++i)
 	{
-		rooms[i]->DrawLayout(window, i, i == exitRoomIndex ? roomColor : roomColor);
+		if (currentRoom == rooms[i].get())
+		{
+			rooms[i]->DrawLayout(window, i, currentRoomColor, layoutSize);
+		}
+		else
+		{
+			rooms[i]->DrawLayout(window, i, roomColor, layoutSize);
+		}
 	}
 }
 
@@ -177,7 +193,16 @@ void DungeonGenerator::DrawMap(sf::RenderWindow* window, sf::Vector2f offset)
 	}
 }
 
-Room* DungeonGenerator::GetRoom(int index)
+bool DungeonGenerator::TryMoveToAdjacentRoom(sf::Vector2i position)
 {
-	return rooms[index].get();
+	for (const auto& adjacent : currentRoom->adjacentRooms)
+	{
+		if (adjacent.second == position)
+		{
+			currentRoom = rooms[adjacent.first].get();
+			return true;
+		}
+	}
+
+	return false;
 }

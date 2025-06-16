@@ -12,8 +12,10 @@
 int myMain()
 {
 	std::random_device rd;
-	DungeonGenerator generator(rd(), 30, 8);
+	DungeonGenerator generator(1172851407/*rd()*/, 30, 8);
 	generator.GenerateLayout();
+
+	bool drawMiniMap = false;
 
 	sf::RenderWindow window{ sf::VideoMode({1440, 960}), "Dungeon Generator" };
 	window.setFramerateLimit(30);
@@ -32,25 +34,13 @@ int myMain()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			/*if (event.type == sf::Event::KeyPressed)
+			if (event.type == sf::Event::KeyPressed)
 			{
-				if (event.key.code == sf::Keyboard::Up)
+				if (event.key.code == sf::Keyboard::Tab)
 				{
-					offset.y += 100.f;
+					drawMiniMap = !drawMiniMap;
 				}
-				else if (event.key.code == sf::Keyboard::Down)
-				{
-					offset.y -= 100.f;
-				}
-				else if (event.key.code == sf::Keyboard::Left)
-				{
-					offset.x += 100.f;
-				}
-				else if (event.key.code == sf::Keyboard::Right)
-				{
-					offset.x -= 100.f;
-				}
-			}*/
+			}
 
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed) window.close();
@@ -71,25 +61,54 @@ int myMain()
 		player.playerMovement();
 
 		// Check Collisions with room's borders
-		if (player.getPosition().x > window.getSize().x)
+		if (player.getPosition().x + player.getShape().getRadius() > window.getSize().x)
 		{
-			offset.x -= window.getSize().x;
-			player.setPosition({ player.getShape().getRadius(), player.getPosition().y });
+			if (generator.TryMoveToAdjacentRoom({ 1, 0 }))
+			{
+				offset.x -= window.getSize().x;
+				player.setPosition({ player.getShape().getRadius(), player.getPosition().y });
+			}
+			else
+			{
+				player.setPosition({ window.getSize().x - player.getShape().getRadius(), player.getPosition().y });
+			}
 		}
 		else if (player.getPosition().x < 0)
 		{
-			offset.x += window.getSize().x;
-			player.setPosition({ window.getSize().x - player.getShape().getRadius(), player.getPosition().y });
+			if (generator.TryMoveToAdjacentRoom({ -1, 0 }))
+			{
+				offset.x += window.getSize().x;
+				player.setPosition({ window.getSize().x - player.getShape().getRadius(), player.getPosition().y });
+			}
+			else
+			{
+				player.setPosition({ player.getShape().getRadius(), player.getPosition().y });
+			}
 		}
 		else if (player.getPosition().y > window.getSize().y)
 		{
-			offset.y -= window.getSize().y;
-			player.setPosition({ player.getPosition().x, player.getShape().getRadius() });
+			if (generator.TryMoveToAdjacentRoom({ 0, -1 }))
+			{
+				offset.y -= window.getSize().y;
+				player.setPosition({ player.getPosition().x, player.getShape().getRadius() });
+			}
+			else
+			{
+				player.setPosition({ player.getPosition().x, window.getSize().y - player.getShape().getRadius() });
+			}
 		}
 		else if (player.getPosition().y < 0)
 		{
-			offset.y += window.getSize().y;
-			player.setPosition({ player.getPosition().x, window.getSize().y - player.getShape().getRadius() });
+			if (generator.TryMoveToAdjacentRoom({ 0, 1 }))
+			{
+				offset.y += window.getSize().y;
+				player.setPosition({ player.getPosition().x, window.getSize().y - player.getShape().getRadius() });
+			}
+			else
+			{
+				player.setPosition({ player.getPosition().x, player.getShape().getRadius() });
+			}
+			
 		}
 
 		//Shooting
@@ -102,7 +121,8 @@ int myMain()
 
 		generator.DrawMap(&window, offset);
 		window.draw(player.getShape());
-		generator.DrawLayout(&window);
+
+		if (drawMiniMap) generator.DrawLayout(&window);
 
 		window.display();
 	}

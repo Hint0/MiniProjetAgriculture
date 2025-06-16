@@ -11,26 +11,26 @@ Room::Room(int x, int y, int distFromStart)
 {
 }
 
-void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color) const
+void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::Vector2f maxSize) const
 {
 	sf::RectangleShape shape(sf::Vector2f(static_cast<float>(x), static_cast<float>(y)));
 	shape.setFillColor(color);
-	float xPos = static_cast<float>(x / 36. + window->getSize().x / 2.);
-	float yPos = static_cast<float>(window->getSize().y / 2. - y / 32.);
+	float xPos = static_cast<float>(x / 36. - maxSize.x / 36. + 5.);
+	float yPos = static_cast<float>(-y / 32. + -maxSize.y / 32. + 5.);
 
 	shape.setPosition({ xPos, yPos });
 	shape.setSize(sf::Vector2f(35, 25));
 	shape.setOutlineThickness(2);
-	shape.setOutlineColor(sf::Color(240, 240, 240, 50));
+	shape.setOutlineColor(sf::Color(0, 0, 0, 100));
 	window->draw(shape);
 
-	sf::Font font;
+	/*sf::Font font;
 	font.loadFromFile("res/arial.ttf");
 	sf::Text text(std::to_string(index), font);
 	text.setFillColor(sf::Color::Black);
 	text.setPosition({ xPos, yPos });
 	text.setCharacterSize(26);
-	window->draw(text);
+	window->draw(text);*/
 }
 
 void Room::DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset)
@@ -47,13 +47,13 @@ void Room::DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset)
 
 void Room::AddAdjacentRoom(int index, sf::Vector2i position)
 {
-	for (const auto i : adjacentRoomsIndexes)
+	for (const auto& room : adjacentRooms)
 	{
-		if (i == index)
+		if (room.first == index)
 			return;
 	}
 
-	adjacentRoomsIndexes.push_back(index);
+	adjacentRooms.push_back({ index, position });
 
 	std::erase_if(avalaibleDoors, [position](const auto& d)
 	{

@@ -13,7 +13,7 @@ class Room
   RoomShape shape;
  public:
   Room(int x, int y, int distFromStart);
-  void DrawLayout(sf::RenderWindow* window, int index, sf::Color color) const;
+  void DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::Vector2f maxSize) const;
   void DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset);
   void AddAdjacentRoom(int index, sf::Vector2i position);
   void InitializeMap();
@@ -24,7 +24,7 @@ class Room
 
   int x, y;
   int distFromStart;
-  std::vector<int> adjacentRoomsIndexes;
+  std::vector<std::pair<int, sf::Vector2i>> adjacentRooms;
   std::vector<sf::Vector2i> avalaibleDoors;
   static sf::Vector2i Size;
 
