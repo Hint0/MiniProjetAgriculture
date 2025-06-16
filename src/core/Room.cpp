@@ -1,4 +1,6 @@
 #include "Room.h"
+#include <DungeonGenerator.h>
+#include <RandomHelper.h>
 
 Room::Room(int x, int y, int distFromStart)
 	: x{ x },
@@ -7,16 +9,18 @@ Room::Room(int x, int y, int distFromStart)
 	shape{ Basic },
 	avalaibleDoors{ {1, 0}, {0, -1}, {-1, 0}, {0, 1} },
 	LayerTerrain{ nullptr },
-	LayerCrops{ nullptr }
+	LayerCrops{ nullptr },
+	isCleared{ false },
+	enemies{ new std::vector<Enemy>() }
 {
 }
 
-void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::Vector2f maxSize) const
+void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::Vector2f offset) const
 {
 	sf::RectangleShape shape(sf::Vector2f(static_cast<float>(x), static_cast<float>(y)));
 	shape.setFillColor(color);
-	float xPos = static_cast<float>(x / 36. - maxSize.x / 36. + 5.);
-	float yPos = static_cast<float>(-y / 32. + -maxSize.y / 32. + 5.);
+	float xPos = static_cast<float>(x / 36. - offset.x / 36. + 5.);
+	float yPos = static_cast<float>(-y / 32. + offset.y / 32. + 5.);
 
 	shape.setPosition({ xPos, yPos });
 	shape.setSize(sf::Vector2f(35, 25));
@@ -43,6 +47,8 @@ void Room::DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset)
 
 	LayerCrops->setOffset(offset);
 	window->draw(*LayerCrops);
+
+	DrawEnemies(window);
 }
 
 void Room::AddAdjacentRoom(int index, sf::Vector2i position)
@@ -97,6 +103,52 @@ std::string Room::GetMapFileNameByDoors()
 
 	fileName += ".tmx";
 	return fileName;
+}
+
+void Room::SpawnEnemies()
+{
+	// Don't spawn enemies if the room is already cleared
+	if (isCleared) return;
+
+	int number = RandomHelper::GetRandomInt(MIN_ENEMIES, MAX_ENEMIES);
+
+	for (int i = 0; i < number; ++i)
+	{
+		Enemy enemy(10.f, 10.f, sf::Vector2f(50.f, 50.f), sf::Color::Magenta);
+		enemy.setPosition({ RandomHelper::GetRandomFloat(0, 1440), RandomHelper::GetRandomFloat(0, 960) });
+		enemies->push_back(enemy);
+	}
+}
+
+void Room::DrawEnemies(sf::RenderWindow* window)
+{
+	if (enemies == nullptr || enemies->empty())
+	{
+		return; // No enemies to draw
+	}
+
+	for (auto& enemy : *enemies)
+	{
+		if (enemy.getPV() <= 0) continue; // Skip dead enemies
+
+		window->draw(enemy.getShape());
+	}
+}
+
+void Room::SetEnemiesTarget(sf::Vector2f target)
+{
+	for (auto& enemy : *enemies)
+	{
+		enemy.enemyBehavior(target);
+	}
+}
+
+void Room::CheckRemainingEnemies()
+{
+	if (enemies == nullptr || enemies->empty())
+	{
+		isCleared = true;
+	}
 }
 
 std::vector<sf::Vector2i> Room::GetDoorPositionsByShape(RoomShape shape)

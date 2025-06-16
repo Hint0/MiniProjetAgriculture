@@ -2,13 +2,13 @@
 
 #include <iostream>
 #include <random>
+#include <RandomHelper.h>
 
 using namespace std;
 using namespace sf;
 
-DungeonGenerator::DungeonGenerator(unsigned int seed, int maxRooms, int longestPath)
-	: seed{ seed },
-	maxRooms{ maxRooms },
+DungeonGenerator::DungeonGenerator(int maxRooms, int longestPath)
+	: maxRooms { maxRooms },
 	longestPath{ longestPath },
 	exitRoomIndex{ -1 },
 	currentRoom{ nullptr }
@@ -22,6 +22,9 @@ void DungeonGenerator::GenerateLayout()
 
 	//Initialize the current room to the first one
 	currentRoom = rooms.back().get();
+
+	//Set the first room to cleared by default, so that the player can move to adjacent rooms
+	currentRoom->isCleared = true;
 
 	float chanceToGenerate = 0.25;
 
@@ -42,7 +45,7 @@ void DungeonGenerator::GenerateLayout()
 		r->InitializeMap();
 	}
 
-	cout << "END OF GENERATION / " << seed << " / Total rooms : " << rooms.size() << endl;
+	cout << "END OF GENERATION / " << RandomHelper::SEED << " / Total rooms : " << rooms.size() << endl;
 }
 
 bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
@@ -90,7 +93,7 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 	}
 
 	float chanceToGenerate = baseChance;
-	float rd = RandomPercent();
+	float rd = RandomHelper::GetRandomFloat(0.f, 1.f);
 
 	if (exitRoomIndex > -1)
 	{
@@ -114,11 +117,7 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 
 	// Update layout size, used to draw mini map correctly
 	if (layoutSize.x > x) layoutSize.x = x;
-	if (layoutSize.y > y)
-	{
-		layoutSize.y = y;
-		cout << layoutSize.y << endl;
-	}
+	if (layoutSize.y < y) layoutSize.y = y;
 
 	unique_ptr<Room> r = make_unique<Room>(x, y, previousRoom->distFromStart + 1);
 
@@ -141,28 +140,21 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 
 	rooms.push_back(move(r));
 
-	chanceToGenerate = exitRoomIndex == -1 ? 0.25 : chanceToGenerate;
+	baseChance = exitRoomIndex == -1 ? 0.25 : baseChance;
 
 	for (const auto& pos : room->avalaibleDoors)
 	{
-		if (GenerateNextRoom(room, pos, chanceToGenerate))
+		if (GenerateNextRoom(room, pos, baseChance))
 		{
-			chanceToGenerate = 0.34;
+			baseChance = 0.34;
 		}
 		else if (exitRoomIndex == -1)
 		{
-			chanceToGenerate += 0.33;
+			baseChance += 0.33;
 		}
 	}
 
 	return true;
-}
-
-float DungeonGenerator::RandomPercent()
-{
-	static default_random_engine engine(seed);
-	uniform_int_distribution distribution(0, 100);
-	return distribution(engine) / 100.0;
 }
 
 void DungeonGenerator::DrawLayout(sf::RenderWindow* window)
@@ -195,6 +187,10 @@ void DungeonGenerator::DrawMap(sf::RenderWindow* window, sf::Vector2f offset)
 
 bool DungeonGenerator::TryMoveToAdjacentRoom(sf::Vector2i position)
 {
+	// All ennemies in the current room must be cleared before moving to an adjacent room
+	if (!currentRoom->isCleared) return false;
+
+	// Check if there is an adjacent room at this position
 	for (const auto& adjacent : currentRoom->adjacentRooms)
 	{
 		if (adjacent.second == position)

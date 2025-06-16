@@ -8,14 +8,19 @@
 #include <SMFLOrthogonalLayer.h>
 #include "Player.hpp"
 #include "Gun.hpp"
+#include <RandomHelper.h>
+
+unsigned int RandomHelper::SEED = 0;
 
 int myMain()
 {
 	std::random_device rd;
-	DungeonGenerator generator(1172851407/*rd()*/, 30, 8);
+	RandomHelper::SEED = rd();
+
+	DungeonGenerator generator(30, 8);
 	generator.GenerateLayout();
 
-	bool drawMiniMap = false;
+	bool drawMiniMap = true;
 
 	sf::RenderWindow window{ sf::VideoMode({1440, 960}), "Dungeon Generator" };
 	window.setFramerateLimit(30);
@@ -26,6 +31,8 @@ int myMain()
 	sf::Vector2f offset(0.f, 0.f);
 
 	player.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f));
+
+	std::vector<Enemy>* enemies = nullptr;
 
 	while (window.isOpen())
 	{
@@ -66,7 +73,9 @@ int myMain()
 			if (generator.TryMoveToAdjacentRoom({ 1, 0 }))
 			{
 				offset.x -= window.getSize().x;
+				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ player.getShape().getRadius(), player.getPosition().y });
+				gun.ClearBullets();
 			}
 			else
 			{
@@ -78,7 +87,9 @@ int myMain()
 			if (generator.TryMoveToAdjacentRoom({ -1, 0 }))
 			{
 				offset.x += window.getSize().x;
+				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ window.getSize().x - player.getShape().getRadius(), player.getPosition().y });
+				gun.ClearBullets();	
 			}
 			else
 			{
@@ -90,7 +101,9 @@ int myMain()
 			if (generator.TryMoveToAdjacentRoom({ 0, -1 }))
 			{
 				offset.y -= window.getSize().y;
+				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ player.getPosition().x, player.getShape().getRadius() });
+				gun.ClearBullets();
 			}
 			else
 			{
@@ -102,7 +115,9 @@ int myMain()
 			if (generator.TryMoveToAdjacentRoom({ 0, 1 }))
 			{
 				offset.y += window.getSize().y;
+				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ player.getPosition().x, window.getSize().y - player.getShape().getRadius() });
+				gun.ClearBullets();
 			}
 			else
 			{
@@ -111,16 +126,27 @@ int myMain()
 			
 		}
 
+		generator.currentRoom->CheckRemainingEnemies();
+		generator.currentRoom->SetEnemiesTarget(player.getPosition());
+
 		//Shooting
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 		{
 			gun.fire(player.getPosition(), sf::Vector2f(sf::Mouse::getPosition(window)));
 		}
 
+		gun.updateBullet(&window, generator.currentRoom->enemies);
+
 		window.clear(sf::Color::Black);
 
 		generator.DrawMap(&window, offset);
 		window.draw(player.getShape());
+
+		std::vector<Bullet> bulletsUsed = gun.getBullets();
+		for (size_t i = 0; i < bulletsUsed.size(); i++)
+		{
+			window.draw(bulletsUsed[i].getBullet());
+		}
 
 		if (drawMiniMap) generator.DrawLayout(&window);
 

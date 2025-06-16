@@ -20,6 +20,7 @@ class Weapon {
 
   float getFireRate(void);
 
+  void ClearBullets();
 
  protected:
   std::vector<Bullet> bullets;
