@@ -13,6 +13,7 @@ class Character {
   Character(float setSpeed, float setPV);
   float getPV(void);
   float getSpeed(void);
+  int getDamage(float damage); //1 = Vivant. 0 = Mort
 
 
  private:

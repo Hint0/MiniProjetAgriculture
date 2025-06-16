@@ -7,6 +7,7 @@ class Enemy : public Character {
   Enemy(float setPV, float setSpeed, sf::Vector2f setSize, sf::Color setColor);
   sf::RectangleShape getShape(void);
   void setPosition(sf::Vector2f pos);
+  void enemyBehavior(sf::Vector2f aim);
 
  private:
   sf::RectangleShape enemy;

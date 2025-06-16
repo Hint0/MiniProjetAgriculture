@@ -14,3 +14,14 @@ float Character::getSpeed(void)
 { 
 	return Speed;
 }
+
+int Character::getDamage(float damage)
+{ 
+	PV = PV - damage;
+	if (PV < 0)
+	{
+          Speed = 0;
+          return 0;
+	}
+	return 1;
+}
