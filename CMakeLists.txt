@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 
 include(FetchContent)
+
 project(MiniProjectAgriculture VERSION 1.0.0 LANGUAGES CXX)
 
 if(WIN32)
@@ -10,6 +11,7 @@ if(WIN32)
 endif()
 
 set (BUILD_SHARED_LIBS FALSE)
+
 FetchContent_Declare(
     sfml
     GIT_REPOSITORY https://github.com/SFML/SFML.git
