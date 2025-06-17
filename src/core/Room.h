@@ -5,7 +5,7 @@
 #include <tmxlite/Map.hpp>
 #include <SMFLOrthogonalLayer.h>
 #include <Enemy.hpp>
-
+#include<memory>
 //Trust elle existe
 class Player;
 
@@ -40,7 +40,7 @@ class Room
   std::vector<std::pair<int, sf::Vector2i>> adjacentRooms;
   std::vector<sf::Vector2i> avalaibleDoors;
   bool isCleared;
-  std::vector<Enemy>* enemies;
+  std::vector<std::unique_ptr<Enemy>> enemies;
   bool isExit;
 
   static const int MIN_ENEMIES = 6;

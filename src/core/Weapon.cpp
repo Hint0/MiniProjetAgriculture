@@ -20,7 +20,7 @@ std::vector<Bullet> Weapon::getBullets(void)
 	return bullets;
 }
 
-void Weapon::updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies,
+void Weapon::updateBullet(sf::RenderWindow* window, std::vector<std::unique_ptr<Enemy>> &enemies,
                           Player player) {
 
 	for (size_t i = 0; i < bullets.size(); i++)
@@ -39,15 +39,14 @@ void Weapon::updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies,
 		else
 		{
 			// Not out of bounds... So collision
-			if (enemies == nullptr) continue;
-			for (size_t k = 0; k < enemies->size(); k++)
+			for (size_t k = 0; k < enemies.size(); k++)
 			{
 				// Collision
 				if (bullets[i].getBullet().getGlobalBounds().intersects(
-					(*enemies)[k].getShape().getGlobalBounds()))
+					(enemies)[k]->getShape().getGlobalBounds()))
 				{
 					bullets.erase(bullets.begin() + i);
-					enemies->erase(enemies->begin() + k);
+					enemies.erase(enemies.begin() + k);
 					break;
 				}
 			}

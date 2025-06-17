@@ -11,7 +11,7 @@ class Weapon {
  public:
   Weapon(float fireRate, float bulletSpeed, sf::Color bulletColor, float bulletRadius);
 
-  void updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies, Player player);
+  void updateBullet(sf::RenderWindow* window, std::vector<std::unique_ptr<Enemy>> &enemies, Player player);
 
   void updateBullets(Bullet bullet);
 

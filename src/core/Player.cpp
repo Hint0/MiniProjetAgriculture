@@ -42,6 +42,7 @@ sf::Vector2f Player::getPosition(void) {
 void Player::setPosition(sf::Vector2f pos)
 {
 	player.setPosition(pos.x - player.getRadius(), pos.y - player.getRadius());
+	this->setSpritePos(player.getPosition());
 }
 /*
 void Player::hitDetector(void)

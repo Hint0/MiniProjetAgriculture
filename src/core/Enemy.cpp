@@ -20,6 +20,7 @@ sf::RectangleShape Enemy::getShape(void)
 void Enemy::setPosition(sf::Vector2f pos) 
 { 
 	enemy.setPosition(pos);
+	this->setSpritePos(enemy.getPosition());
 }
 
 //Enemy stupide va vers player en ligne droite et lui tire dessus

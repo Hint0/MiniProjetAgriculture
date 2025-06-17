@@ -3,18 +3,17 @@
 #include <RandomHelper.h>
 #include "Player.hpp"
 
-Room::Room(int x, int y, int distFromStart)
-	: x{ x },
-	y{ y },
-	distFromStart{ distFromStart },
-	shape{ Basic },
-	avalaibleDoors{ {1, 0}, {0, -1}, {-1, 0}, {0, 1} },
-	LayerTerrain{ nullptr },
-	LayerCrops{ nullptr },
-	isCleared{ false },
-	enemies{ new std::vector<Enemy>() },
-	isExit{ false }
-{
+Room::Room(int x, int y, int distFromStart)  
+   : x{ x },  
+     y{ y },  
+     distFromStart{ distFromStart },  
+     shape{ Basic },  
+     avalaibleDoors{ {1, 0}, {0, -1}, {-1, 0}, {0, 1} },  
+     LayerTerrain{ nullptr },  
+     LayerCrops{ nullptr },  
+     isCleared{ false },  
+     isExit{ false }  
+{  
 }
 
 void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::Vector2f offset) const
@@ -108,35 +107,38 @@ void Room::SpawnEnemies()
 
 	for (int i = 0; i < number; ++i)
 	{
-		Enemy enemy(10.f, 10.f, sf::Vector2f(50.f, 50.f), sf::Color::Magenta);
-		enemy.setPosition({ RandomHelper::GetRandomFloat(0, 1440), RandomHelper::GetRandomFloat(0, 960) });
-		enemies->push_back(enemy);
+		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(10.f, 10.f, sf::Vector2f(50.f, 50.f), sf::Color::Magenta);
+		enemy->setPosition({ RandomHelper::GetRandomFloat(0, 1440), RandomHelper::GetRandomFloat(0, 960) });
+		enemies.push_back(std::move(enemy));
 	}
 }
 
 void Room::DrawEnemies(sf::RenderWindow* window)
 {
-	if (enemies == nullptr || enemies->empty())
+	if (enemies.empty())
 	{
 		return; // No enemies to draw
 	}
 
-	for (auto& enemy : *enemies)
+	for (const auto& enemy : enemies)
 	{
-		if (enemy.getPV() <= 0) continue; // Skip dead enemies
+		if (enemy->getPV() <= 0) continue; // Skip dead enemies
 
 		//window->draw(enemy.getShape());
-        window->draw(enemy.getSprite());
+        window->draw(enemy->getSprite());
 	}
 }
 
 void Room::SetEnemiesTarget(Player* target)
 {
     std::vector<int> enemy2erase;
+
+	if (enemies.empty()) return;
+
 	//for (auto& enemy : *enemies)
-    for (int i = 0; i<enemies->size(); i++)
+    for (int i = 0; i<enemies.size(); i++)
 	{
-		if( (*enemies)[i].enemyBehavior(target))
+		if( (enemies)[i]->enemyBehavior(target))
 		{
 			enemy2erase.push_back(i);
 		}
@@ -147,16 +149,15 @@ void Room::SetEnemiesTarget(Player* target)
         int k = 0;
 		for (auto i : enemy2erase)
 		{
-                enemies->erase(enemies->begin()+i-k);
+                enemies.erase(enemies.begin()+i-k);
                 k += 1;
 		}
 	}
-        
 }
 
 void Room::CheckRemainingEnemies()
 {
-	if (enemies == nullptr || enemies->empty())
+	if (enemies.empty())
 	{
 		isCleared = true;
 	}

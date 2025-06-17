@@ -33,8 +33,6 @@ int myMain()
 
 	player.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f));
 
-	std::vector<Enemy>* enemies = nullptr;
-
 	while (window.isOpen())
 	{
 		// check all the window's events that were triggered since the last
