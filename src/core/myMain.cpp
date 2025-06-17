@@ -55,6 +55,7 @@ int myMain()
 
 					player.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f));
 					player.setPV(10);
+					player.setSpeed(10);
 					gun.ClearBullets();
 
 					offset = sf::Vector2f(0.f, 0.f);
@@ -168,6 +169,8 @@ int myMain()
 		{
 			generator.DrawDefeat(&window);
 		}
+
+		player.drawPV(&window);
 
 		window.display();
 	}

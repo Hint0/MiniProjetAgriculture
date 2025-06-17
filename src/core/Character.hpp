@@ -12,7 +12,7 @@
 
 class Character {
  public:
-  Character(float setSpeed, float setPV);
+     Character(float setSpeed, float setPV);
   float getPV(void);
   float getSpeed(void);
   int getDamage(float damage); //1 = Vivant. 0 = Mort
@@ -20,6 +20,7 @@ class Character {
   sf::Sprite getSprite(void);
   void setSpritePos(sf::Vector2f setPos);
   void setPV(float setPV);
+  void setSpeed(float setSpeed);
 
 
  private:

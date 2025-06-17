@@ -1,7 +1,7 @@
 #include "Character.hpp"
 
-Character::Character(float setSpeed, float setPV) : 
-	Speed {setSpeed}, 
+Character::Character(float setSpeed, float setPV) :
+	Speed{ setSpeed },
 	PV {setPV}
 	{}
 
@@ -48,4 +48,9 @@ int Character::getDamage(float damage)
 void Character::setPV(float setPV)
 {
 	PV = setPV;
+}
+
+void Character::setSpeed(float setSpeed)
+{
+	Speed = setSpeed;
 }
