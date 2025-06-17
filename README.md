@@ -11,7 +11,7 @@ Une fois le jeu lancé le joueur peut utiliser les touches de clavier et la sour
 - tab : pour activer ou désactiver la minimap
 - R : pour réinitialiser le joueur et générer un nouveau donjon
 
-## Capture d'écran 
+## Captures d'écran 
 
 ScreenShot d'une debut de partie, le joueur est au milieu dans la 1ère salle du donjon
 ![image](https://github.com/user-attachments/assets/35ff5580-20aa-488a-ad7e-698c39a67822)
