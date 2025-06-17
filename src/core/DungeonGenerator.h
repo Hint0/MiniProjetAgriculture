@@ -22,6 +22,7 @@ class DungeonGenerator
   void DrawMap(sf::RenderWindow* window, sf::Vector2f offset);
   bool TryMoveToAdjacentRoom(sf::Vector2i position);
   void DrawWin(sf::RenderWindow* window) const;
+  void DrawDefeat(sf::RenderWindow* window) const;
 
   Room* currentRoom;
 };

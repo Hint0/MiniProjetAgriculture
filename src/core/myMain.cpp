@@ -154,6 +154,11 @@ int myMain()
 
 		generator.DrawWin(&window);
 
+		if (player.getPV() < 1)
+		{
+			generator.DrawDefeat(&window);
+		}
+
 		window.display();
 	}
 

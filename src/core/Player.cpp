@@ -22,7 +22,6 @@ void Player::playerMovement(void)
       sf::Vector2f dir = {Speed*(left_right / mag), Speed*(up_down / mag)};
       player.move(dir);
     }
-    std::cout << getPV() << std::endl;
 
 }
 

@@ -241,3 +241,13 @@ void DungeonGenerator::DrawWin(sf::RenderWindow* window) const
 	text.setCharacterSize(300);
 	window->draw(text);
 }
+
+void DungeonGenerator::DrawDefeat(sf::RenderWindow* window) const {
+        sf::Font font;
+        font.loadFromFile("res/arial.ttf");
+        sf::Text text("YOU ARE \n   DEAD!", font);
+        text.setFillColor(sf::Color::Red);
+        text.setPosition({60, 100});
+        text.setCharacterSize(300);
+        window->draw(text);
+}
