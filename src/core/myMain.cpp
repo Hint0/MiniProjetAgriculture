@@ -29,6 +29,7 @@ int myMain()
 
 	Gun gun(0.2, 10, sf::Color::Yellow, 5);
 
+	std::vector<Bullet> bulletsUsed = gun.getBullets();
 
 	sf::Vector2f offset(0.f, 0.f);
 
@@ -48,6 +49,19 @@ int myMain()
 				if (event.key.code == sf::Keyboard::Tab)
 				{
 					drawMiniMap = !drawMiniMap;
+				}
+				else if (event.key.code == sf::Keyboard::R)
+				{
+					// Restart the game, reseting the generator and player
+					RandomHelper::SEED = rd();
+					generator.Reset();
+					generator.GenerateLayout();
+
+					player.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f));
+					player.setPV(10);
+					bulletsUsed.clear();
+
+					offset = sf::Vector2f(0.f, 0.f);
 				}
 			}
 
@@ -145,7 +159,6 @@ int myMain()
 		//window.draw(player.getShape());
         window.draw(player.getSprite());
 
-		std::vector<Bullet> bulletsUsed = gun.getBullets();
 		for (size_t i = 0; i < bulletsUsed.size(); i++)
 		{
 			window.draw(bulletsUsed[i].getBullet());

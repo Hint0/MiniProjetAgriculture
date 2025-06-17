@@ -23,6 +23,7 @@ class DungeonGenerator
   bool TryMoveToAdjacentRoom(sf::Vector2i position);
   void DrawWin(sf::RenderWindow* window) const;
   void DrawDefeat(sf::RenderWindow* window) const;
+  void Reset();
 
   Room* currentRoom;
 };

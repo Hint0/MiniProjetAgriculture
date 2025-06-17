@@ -19,6 +19,7 @@ class Character {
   void setSpriteTexture(const std::string& path);
   sf::Sprite getSprite(void);
   void setSpritePos(sf::Vector2f setPos);
+  void setPV(float setPV);
 
 
  private:
