@@ -58,14 +58,3 @@ void Player::drawPV(sf::RenderWindow* window)
 		window->draw(pv);
 	}
 }
-/*
-void Player::hitDetector(void)
-{
-	//Collision
-	if (player.getGlobalBounds().intersects(
-		(Bullet.getShape().getGlobalBounds())))
-	{
-		  getDamage(1);
-	}
-}
-*/

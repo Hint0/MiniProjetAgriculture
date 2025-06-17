@@ -2,7 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "Character.hpp"
-//#include "Weapon.hpp"
+
 
 class Player : public Character {
  public:
@@ -12,7 +12,7 @@ class Player : public Character {
   sf::Vector2f getPosition(void);
   void setPosition(sf::Vector2f pos);
   void drawPV(sf::RenderWindow* window);
-//  void hitDetector(void);
+
 
 
  private:
