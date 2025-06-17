@@ -1,6 +1,7 @@
 # MiniProjetAgriculture
 
 Ce jeu est un top-down shooter, avec un donjon généré procéduralement. Le but du jeu est de parcourir le donjon en élimimant les adversaires jusqu'à trouver la sortie.
+Le joueur incarne un fermier qui cultive du mais. A force de faire grandir ses champs et de vouloir produit toujours plus et toujours plus gros, certaines pousse de maïs ont commencé à muter et devenir aggresives. La vie du fermier est désormais en danger, il doit fuir ses champs et rejoindre la foret...
 
 ## Mode d'emploi
 
@@ -24,3 +25,7 @@ ScreenShot d'une fin de partie, le joueur n'a plus de points de vie
 
 ScreenShot d'une victoire du joueur
 ![image](https://github.com/user-attachments/assets/27bae120-001a-42a7-b48f-2be208bb776b)
+
+## Génération du projet
+
+Suivre la procédure : [Construire un projet C++ avec cmake](https://www-inf.telecom-sudparis.eu/COURS/CSC4526/new_site/Supports/Documents/OutilsCSC4526/outilsCSC4526.html#construire-un-projet-c-avec-cmake)
