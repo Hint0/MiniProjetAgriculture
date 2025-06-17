@@ -10,10 +10,20 @@ Player::Player(float setPV, float setSpeed, float setRadius, sf::Color setColor)
 void Player::playerMovement(void)
 {
     float Speed = Character::getSpeed();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) player.move({0, -Speed});
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) player.move({-Speed, 0});
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) player.move({0, Speed});
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) player.move({Speed, 0});
+    float up_down = 0;
+    float left_right = 0;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) up_down = -Speed;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) left_right = -Speed;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) up_down = Speed;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) left_right = Speed;
+    float mag = sqrt(2);
+    if (mag != 0) 
+    {
+      sf::Vector2f dir = {left_right / mag, up_down / mag};
+      player.move(dir);
+    }
+
+
 }
 
 sf::CircleShape Player::getShape(void)
@@ -30,3 +40,14 @@ void Player::setPosition(sf::Vector2f pos)
 {
 	player.setPosition(pos.x - player.getRadius(), pos.y - player.getRadius());
 }
+/*
+void Player::hitDetector(void)
+{
+    //Collision
+    if (player.getGlobalBounds().intersects(
+        (Bullet.getShape().getGlobalBounds())))
+    {
+          getDamage(1);
+    }
+}
+*/

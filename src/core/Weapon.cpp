@@ -18,8 +18,8 @@ std::vector<Bullet> Weapon::getBullets(void)
 	return bullets;
 }
 
-void Weapon::updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies)
-{
+void Weapon::updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies,
+                          Player player) {
 
 	for (size_t i = 0; i < bullets.size(); i++)
 	{
@@ -49,6 +49,17 @@ void Weapon::updateBullet(sf::RenderWindow* window, std::vector<Enemy>* enemies)
 					break;
 				}
 			}
+			//Collision player ??
+			//C'est du cut content actuellement, j'arrive pas à figurer comment faire fonctionner CORRECTEMENT ceci
+/*
+            if (bullets[i].getBullet().getGlobalBounds().intersects(
+                    player.getShape().getGlobalBounds())) 
+			{
+                bullets.erase(bullets.begin() + i);
+                player.getDamage(1);
+                break;
+            }
+*/
 		}
 	}
 

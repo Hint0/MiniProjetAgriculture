@@ -26,7 +26,9 @@ int myMain()
 	window.setFramerateLimit(30);
 
 	Player player(10.f, 10.f, 25.f, sf::Color::Red);
+
 	Gun gun(0.2, 10, sf::Color::Yellow, 5);
+
 
 	sf::Vector2f offset(0.f, 0.f);
 
@@ -135,7 +137,7 @@ int myMain()
 			gun.fire(player.getPosition(), sf::Vector2f(sf::Mouse::getPosition(window)));
 		}
 
-		gun.updateBullet(&window, generator.currentRoom->enemies);
+		gun.updateBullet(&window, generator.currentRoom->enemies, player);
 
 		window.clear(sf::Color::Black);
 

@@ -2,6 +2,9 @@
 
 #include "Character.hpp"
 
+//Je te promet qu'elle existe, trust me
+class Gun;
+
 class Enemy : public Character {
  public:
   Enemy(float setPV, float setSpeed, sf::Vector2f setSize, sf::Color setColor);

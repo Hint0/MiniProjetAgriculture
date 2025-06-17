@@ -6,6 +6,7 @@
 #include <SMFLOrthogonalLayer.h>
 #include <Enemy.hpp>
 
+
 enum RoomShape {Basic, Big, Corridor, Small };
 
 class Room 
