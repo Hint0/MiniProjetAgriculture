@@ -251,3 +251,12 @@ void DungeonGenerator::DrawDefeat(sf::RenderWindow* window) const {
         text.setCharacterSize(300);
         window->draw(text);
 }
+
+void DungeonGenerator::Reset()
+{
+	rooms.clear();
+	exitRoomIndex = -1;
+	hasWin = false;
+	currentRoom = nullptr;
+	layoutSize = sf::Vector2f(0.f, 0.f);
+}

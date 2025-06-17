@@ -26,3 +26,8 @@ int Character::getDamage(float damage)
 	}
 	return 1;
 }
+
+void Character::setPV(float setPV)
+{
+	PV = setPV;
+}
