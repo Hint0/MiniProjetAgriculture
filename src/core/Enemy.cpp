@@ -1,5 +1,5 @@
 #include "Enemy.hpp"
-#include "Gun.hpp"
+
 
 Enemy::Enemy(float setPV, float setSpeed, sf::Vector2f setSize, sf::Color setColor): 
 	Character{ setPV, setSpeed }
@@ -38,7 +38,7 @@ void Enemy::enemyBehavior(sf::Vector2f aim)
   }
   else
   {
-        //pistolet.fire(enemy.getPosition(), aim);
+	//pistolet.fire(enemy.getPosition(), aim);
 	  //Logique pour tirer
   }
 

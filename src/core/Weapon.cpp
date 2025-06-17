@@ -1,4 +1,6 @@
 #include "Weapon.hpp"
+#include "Enemy.hpp"
+#include "Player.hpp"
 
 Weapon::Weapon(float fireRate, float bulletSpeed, sf::Color bulletColor, float bulletRadius) :
 	fireRate{ fireRate },

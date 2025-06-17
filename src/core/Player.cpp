@@ -12,14 +12,14 @@ void Player::playerMovement(void)
     float Speed = Character::getSpeed();
     float up_down = 0;
     float left_right = 0;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) up_down = -Speed;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) left_right = -Speed;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) up_down = Speed;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) left_right = Speed;
-    float mag = sqrt(2);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) up_down = -1;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) left_right = -1;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) up_down = 1;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) left_right = 1;
+    float mag = sqrt(left_right*left_right + up_down*up_down);
     if (mag != 0) 
     {
-      sf::Vector2f dir = {left_right / mag, up_down / mag};
+      sf::Vector2f dir = {Speed*(left_right / mag), Speed*(up_down / mag)};
       player.move(dir);
     }
 

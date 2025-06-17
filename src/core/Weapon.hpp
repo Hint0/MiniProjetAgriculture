@@ -2,8 +2,10 @@
 
 #include <ctime>
 #include "Bullet.hpp"
-#include "Enemy.hpp"
-#include "Player.hpp"
+
+class Enemy;
+
+class Player;
 
 class Weapon {
  public:
