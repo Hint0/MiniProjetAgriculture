@@ -28,3 +28,7 @@ ScreenShot d'une victoire du joueur
 ## Génération du projet
 
 Suivre la procédure : [Construire un projet C++ avec cmake](https://www-inf.telecom-sudparis.eu/COURS/CSC4526/new_site/Supports/Documents/OutilsCSC4526/outilsCSC4526.html#construire-un-projet-c-avec-cmake)
+
+## Crédits
+
+Les assets utilisés pour créer les maps du donjons : [Farming Sim Tileset Pack - by VectoRaith](https://vectoraith.itch.io/farming-sim-tileset-pack/devlog/898942/farming-sim-tileset-pack-update-v104)
