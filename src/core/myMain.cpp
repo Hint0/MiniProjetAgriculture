@@ -129,7 +129,7 @@ int myMain()
 		}
 
 		generator.currentRoom->CheckRemainingEnemies();
-		generator.currentRoom->SetEnemiesTarget(player.getPosition());
+		generator.currentRoom->SetEnemiesTarget(&player);
 
 		//Shooting
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))

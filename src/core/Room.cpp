@@ -1,6 +1,7 @@
 #include "Room.h"
 #include <DungeonGenerator.h>
 #include <RandomHelper.h>
+#include "Player.hpp"
 
 Room::Room(int x, int y, int distFromStart)
 	: x{ x },
@@ -128,12 +129,28 @@ void Room::DrawEnemies(sf::RenderWindow* window)
 	}
 }
 
-void Room::SetEnemiesTarget(sf::Vector2f target)
+void Room::SetEnemiesTarget(Player* target)
 {
-	for (auto& enemy : *enemies)
+    std::vector<int> enemy2erase;
+	//for (auto& enemy : *enemies)
+    for (int i = 0; i<enemies->size(); i++)
 	{
-		enemy.enemyBehavior(target);
+		if( (*enemies)[i].enemyBehavior(target))
+		{
+			enemy2erase.push_back(i);
+		}
 	}
+	//Si on supprime directement, il se peut qu'on se prenne un out of range
+	if (!enemy2erase.empty())
+	{
+        int k = 0;
+		for (auto i : enemy2erase)
+		{
+                enemies->erase(enemies->begin()+i-k);
+                k += 1;
+		}
+	}
+        
 }
 
 void Room::CheckRemainingEnemies()

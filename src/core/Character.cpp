@@ -18,9 +18,10 @@ float Character::getSpeed(void)
 int Character::getDamage(float damage)
 { 
 	PV = PV - damage;
-	if (PV < 0)
+	if (PV < 1)
 	{
           Speed = 0;
+          std::cout << "Mort" << std::endl;
           return 0;
 	}
 	return 1;

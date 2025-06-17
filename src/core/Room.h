@@ -6,6 +6,8 @@
 #include <SMFLOrthogonalLayer.h>
 #include <Enemy.hpp>
 
+//Trust elle existe
+class Player;
 
 enum RoomShape {Basic, Big, Corridor, Small };
 
@@ -27,7 +29,7 @@ class Room
   std::string GetMapFileNameByDoors();
   void SpawnEnemies();
   void DrawEnemies(sf::RenderWindow* window);
-  void SetEnemiesTarget(sf::Vector2f target);
+  void SetEnemiesTarget(Player* target);
   void CheckRemainingEnemies();
 
   static std::vector<sf::Vector2i> GetDoorPositionsByShape(RoomShape shape);
