@@ -1,7 +1,6 @@
 # MiniProjetAgriculture
 
-Ce jeu est un top-down shooter, avec un donjon généré procéduralement. Le but du jeu est de parcourir le donjon en élimimant les adversaires jusqu'à trouver la sortie.
-Le joueur incarne un fermier qui cultive du mais. A force de faire grandir ses champs et de vouloir produit toujours plus et toujours plus gros, certaines pousse de maïs ont commencé à muter et devenir aggresives. La vie du fermier est désormais en danger, il doit fuir ses champs et rejoindre la foret...
+Ce jeu est un top-down shooter, avec un donjon généré procéduralement. Le but du jeu est de parcourir le donjon en éliminant les adversaires jusqu'à trouver la sortie. Le joueur incarne un fermier qui cultive du maïs. À force de faire grandir ses champs et de vouloir produire toujours plus et toujours plus gros, certaines pousses de maïs ont commencé à muter et à devenir agressives. La vie du fermier est désormais en danger : il doit fuir ses champs et rejoindre la forêt...
 
 ## Mode d'emploi
 
