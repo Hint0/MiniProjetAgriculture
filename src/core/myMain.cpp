@@ -29,8 +29,6 @@ int myMain()
 
 	Gun gun(0.2, 10, sf::Color::Yellow, 5);
 
-	std::vector<Bullet> bulletsUsed = gun.getBullets();
-
 	sf::Vector2f offset(0.f, 0.f);
 
 	player.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f));
@@ -59,7 +57,7 @@ int myMain()
 
 					player.setPosition(sf::Vector2f(window.getSize().x / 2.f, window.getSize().y / 2.f));
 					player.setPV(10);
-					bulletsUsed.clear();
+					gun.ClearBullets();
 
 					offset = sf::Vector2f(0.f, 0.f);
 				}
@@ -159,9 +157,9 @@ int myMain()
 		//window.draw(player.getShape());
         window.draw(player.getSprite());
 
-		for (size_t i = 0; i < bulletsUsed.size(); i++)
+		for (size_t i = 0; i < gun.getBullets().size(); i++)
 		{
-			window.draw(bulletsUsed[i].getBullet());
+			window.draw(gun.getBullets()[i].getBullet());
 		}
 
 		if (drawMiniMap) generator.DrawLayout(&window);
