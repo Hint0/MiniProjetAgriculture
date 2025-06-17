@@ -8,7 +8,7 @@ Une fois le jeu lancé le joueur peut utiliser les touches de clavier et la sour
 - ZQSD : pour déplacer le personnage
 - espace : pour tirer un projectile
 - déplacement de la souris : pour viser, les projectiles seront tirés vers la position de la souris sur l'écran
-- tab : pour activer ou désactiver la minimpa
+- tab : pour activer ou désactiver la minimap
 - R : pour réinitialiser le joueur et générer un nouveau donjon
 
 ## Capture d'écran 
