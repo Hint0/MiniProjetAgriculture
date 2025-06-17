@@ -15,6 +15,24 @@ float Character::getSpeed(void)
 	return Speed;
 }
 
+void Character::setSpriteTexture(const std::string& path) 
+{
+  texture.loadFromFile(path);
+  std::cout << path << std::endl;
+  sprite.setTexture(texture);
+}
+
+void Character::setSpritePos(sf::Vector2f setPos)
+{
+	sprite.setPosition(setPos);
+  sprite.setScale({4, 4});
+}
+
+sf::Sprite Character::getSprite(void) 
+{ 
+	return sprite;
+}
+
 int Character::getDamage(float damage)
 { 
 	PV = PV - damage;

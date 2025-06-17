@@ -142,7 +142,8 @@ int myMain()
 		window.clear(sf::Color::Black);
 
 		generator.DrawMap(&window, offset);
-		window.draw(player.getShape());
+		//window.draw(player.getShape());
+        window.draw(player.getSprite());
 
 		std::vector<Bullet> bulletsUsed = gun.getBullets();
 		for (size_t i = 0; i < bulletsUsed.size(); i++)

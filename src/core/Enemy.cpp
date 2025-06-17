@@ -5,8 +5,11 @@
 Enemy::Enemy(float setPV, float setSpeed, sf::Vector2f setSize, sf::Color setColor): 
 	Character{ setPV, setSpeed }
 {
-  enemy.setFillColor(setColor);
+  enemy.setFillColor(sf::Color::Transparent);
   enemy.setSize(setSize);
+
+  this->setSpriteTexture("res/Sprites/Enemy.png");
+  this->setSpritePos(enemy.getPosition());
 }
 
 sf::RectangleShape Enemy::getShape(void)
@@ -35,6 +38,8 @@ int Enemy::enemyBehavior(Player* aim)
   sf::Vector2f velocity = {normDir.x * getSpeed(), normDir.y * getSpeed()};
 
   enemy.move(velocity);
+
+  this->setSpritePos(enemy.getPosition());
 
   if (enemy.getGlobalBounds().intersects(aim->getShape().getGlobalBounds()))
   {

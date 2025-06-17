@@ -125,7 +125,8 @@ void Room::DrawEnemies(sf::RenderWindow* window)
 	{
 		if (enemy.getPV() <= 0) continue; // Skip dead enemies
 
-		window->draw(enemy.getShape());
+		//window->draw(enemy.getShape());
+        window->draw(enemy.getSprite());
 	}
 }
 

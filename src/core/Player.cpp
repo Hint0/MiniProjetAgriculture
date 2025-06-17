@@ -3,8 +3,11 @@
 Player::Player(float setPV, float setSpeed, float setRadius, sf::Color setColor): 
     Character(setSpeed, setPV)
 {
-    player.setFillColor(setColor);
+    player.setFillColor(sf::Color::Transparent);
     player.setRadius(setRadius);
+
+    this->setSpriteTexture("res/Sprites/Player.png");
+    this->setSpritePos(player.getPosition());
 }
 
 void Player::playerMovement(void)
@@ -21,6 +24,7 @@ void Player::playerMovement(void)
     {
       sf::Vector2f dir = {Speed*(left_right / mag), Speed*(up_down / mag)};
       player.move(dir);
+      this->setSpritePos(player.getPosition());
     }
 
 }
