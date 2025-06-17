@@ -152,6 +152,8 @@ int myMain()
 
 		if (drawMiniMap) generator.DrawLayout(&window);
 
+		generator.DrawWin(&window);
+
 		window.display();
 	}
 

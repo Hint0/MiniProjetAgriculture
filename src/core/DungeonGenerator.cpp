@@ -8,10 +8,11 @@ using namespace std;
 using namespace sf;
 
 DungeonGenerator::DungeonGenerator(int maxRooms, int longestPath)
-	: maxRooms { maxRooms },
+	: maxRooms{ maxRooms },
 	longestPath{ longestPath },
 	exitRoomIndex{ -1 },
-	currentRoom{ nullptr }
+	currentRoom{ nullptr },
+	hasWin{ false }
 {
 }
 
@@ -40,9 +41,9 @@ void DungeonGenerator::GenerateLayout()
 		}
 	}
 
-	for (auto& r : rooms)
+	for (size_t i = 0; i < rooms.size(); ++i)
 	{
-		r->InitializeMap();
+		rooms[i]->InitializeMap();
 	}
 
 	cout << "END OF GENERATION / " << RandomHelper::SEED << " / Total rooms : " << rooms.size() << endl;
@@ -58,6 +59,7 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 		if (previousRoom->distFromStart + 1 > longestPath)
 		{
 			exitRoomIndex = rooms.size() - 1;
+			previousRoom->isExit = true;
 			return false;
 		}
 	}
@@ -65,6 +67,20 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 	{
 		return false;
 	}
+
+	// Make sure the door of the previous room is actually avalaible
+	// as it may not be up to date, if not don't try to create the room
+	bool avalaible = false;
+	for (const auto& door : previousRoom->avalaibleDoors)
+	{
+		if (door == direction)
+		{
+			avalaible = true;
+			break;
+		}
+	}
+
+	if (!avalaible) return false;
 
 	Vector2i size = Room::GetRoomSizeByShape(RoomShape::Basic);
 
@@ -75,8 +91,6 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 	//Get the wanted room's adjacent rooms
 	vector<pair<int, Vector2i>> adjacents;
 
-	vector<Vector2i> positions = Room::GetDoorPositionsByShape(RoomShape::Basic);
-
 	for (int i = 0; i < rooms.size(); ++i)
 	{
 		Room* room = rooms[i].get();
@@ -86,6 +100,10 @@ bool DungeonGenerator::GenerateNextRoom(Room* previousRoom,
 				room->y == y + (pos.y * size.y) &&
 				adjacents.size() < 4)
 			{
+				// Exit room shouldn't have more than one adjacent room
+				// So if it is found as return do not create the room
+				if (exitRoomIndex == i) return false;
+
 				int index = i;
 				adjacents.push_back({ index, pos });
 			}
@@ -190,6 +208,14 @@ bool DungeonGenerator::TryMoveToAdjacentRoom(sf::Vector2i position)
 	// All ennemies in the current room must be cleared before moving to an adjacent room
 	if (!currentRoom->isCleared) return false;
 
+	// If  the current room is the exit, locked the player inside (so he can't go back)
+	// and toggle win display message
+	if (currentRoom->isExit)
+	{
+		hasWin = true;
+		return false;
+	}
+
 	// Check if there is an adjacent room at this position
 	for (const auto& adjacent : currentRoom->adjacentRooms)
 	{
@@ -201,4 +227,17 @@ bool DungeonGenerator::TryMoveToAdjacentRoom(sf::Vector2i position)
 	}
 
 	return false;
+}
+
+void DungeonGenerator::DrawWin(sf::RenderWindow* window) const
+{
+	if (!hasWin) return;
+
+	sf::Font font;
+	font.loadFromFile("res/arial.ttf");
+	sf::Text text("YOU ARE \n   FREE!", font);
+	text.setFillColor(sf::Color(50, 200, 50, 230));
+	text.setPosition({ 60, 100 });
+	text.setCharacterSize(300);
+	window->draw(text);
 }

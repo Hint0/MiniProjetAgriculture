@@ -39,6 +39,7 @@ class Room
   std::vector<sf::Vector2i> avalaibleDoors;
   bool isCleared;
   std::vector<Enemy>* enemies;
+  bool isExit;
 
   static const int MIN_ENEMIES = 6;
   static const int MAX_ENEMIES = 12;

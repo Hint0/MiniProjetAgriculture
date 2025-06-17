@@ -11,7 +11,8 @@ Room::Room(int x, int y, int distFromStart)
 	LayerTerrain{ nullptr },
 	LayerCrops{ nullptr },
 	isCleared{ false },
-	enemies{ new std::vector<Enemy>() }
+	enemies{ new std::vector<Enemy>() },
+	isExit{ false }
 {
 }
 
@@ -27,14 +28,6 @@ void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::
 	shape.setOutlineThickness(2);
 	shape.setOutlineColor(sf::Color(0, 0, 0, 100));
 	window->draw(shape);
-
-	/*sf::Font font;
-	font.loadFromFile("res/arial.ttf");
-	sf::Text text(std::to_string(index), font);
-	text.setFillColor(sf::Color::Black);
-	text.setPosition({ xPos, yPos });
-	text.setCharacterSize(26);
-	window->draw(text);*/
 }
 
 void Room::DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset)
@@ -77,7 +70,7 @@ void Room::InitializeMap()
 
 std::string Room::GetMapFileNameByDoors()
 {
-	std::string fileName = "res/maps/Default_";
+	std::string fileName = isExit ? "res/maps/End_" : "res/maps/Default_";
 
 	bool right = false;
 	bool left = false;
@@ -107,8 +100,8 @@ std::string Room::GetMapFileNameByDoors()
 
 void Room::SpawnEnemies()
 {
-	// Don't spawn enemies if the room is already cleared
-	if (isCleared) return;
+	// Don't spawn enemies if the room is already cleared OR if this is the exit room
+	if (isCleared || isExit) return;
 
 	int number = RandomHelper::GetRandomInt(MIN_ENEMIES, MAX_ENEMIES);
 

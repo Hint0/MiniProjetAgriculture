@@ -12,6 +12,7 @@ class DungeonGenerator
   std::vector<std::unique_ptr<Room>> rooms;
   int exitRoomIndex;
   sf::Vector2f layoutSize;
+  bool hasWin;
 
  public:
   DungeonGenerator(int maxRooms, int longestPath);
@@ -20,6 +21,7 @@ class DungeonGenerator
   void DrawLayout(sf::RenderWindow* window);
   void DrawMap(sf::RenderWindow* window, sf::Vector2f offset);
   bool TryMoveToAdjacentRoom(sf::Vector2i position);
+  void DrawWin(sf::RenderWindow* window) const;
 
   Room* currentRoom;
 };
