@@ -85,6 +85,7 @@ int myMain()
 		{
 			if (generator.TryMoveToAdjacentRoom({ 1, 0 }))
 			{
+				generator.currentRoom->InitializeMap();
 				offset.x -= window.getSize().x;
 				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ player.getShape().getRadius(), player.getPosition().y });
@@ -99,6 +100,7 @@ int myMain()
 		{
 			if (generator.TryMoveToAdjacentRoom({ -1, 0 }))
 			{
+				generator.currentRoom->InitializeMap();
 				offset.x += window.getSize().x;
 				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ window.getSize().x - player.getShape().getRadius(), player.getPosition().y });
@@ -113,6 +115,7 @@ int myMain()
 		{
 			if (generator.TryMoveToAdjacentRoom({ 0, -1 }))
 			{
+				generator.currentRoom->InitializeMap();
 				offset.y -= window.getSize().y;
 				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ player.getPosition().x, player.getShape().getRadius() });
@@ -127,6 +130,7 @@ int myMain()
 		{
 			if (generator.TryMoveToAdjacentRoom({ 0, 1 }))
 			{
+				generator.currentRoom->InitializeMap();
 				offset.y += window.getSize().y;
 				generator.currentRoom->SpawnEnemies();
 				player.setPosition({ player.getPosition().x, window.getSize().y - player.getShape().getRadius() });

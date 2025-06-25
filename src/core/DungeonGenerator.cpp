@@ -41,10 +41,8 @@ void DungeonGenerator::GenerateLayout()
 		}
 	}
 
-	for (size_t i = 0; i < rooms.size(); ++i)
-	{
-		rooms[i]->InitializeMap();
-	}
+
+	rooms[0]->InitializeMap();
 
 	cout << "END OF GENERATION / " << RandomHelper::SEED << " / Total rooms : " << rooms.size() << endl;
 }
@@ -195,12 +193,7 @@ void DungeonGenerator::DrawLayout(sf::RenderWindow* window)
 
 void DungeonGenerator::DrawMap(sf::RenderWindow* window, sf::Vector2f offset)
 {
-	int counter = 0;
-	for (const auto& room : rooms)
-	{
-		room->DrawRoom(window, counter, offset);
-		counter++;
-	}
+	currentRoom->DrawRoom(window, offset);
 }
 
 bool DungeonGenerator::TryMoveToAdjacentRoom(sf::Vector2i position)
@@ -242,14 +235,15 @@ void DungeonGenerator::DrawWin(sf::RenderWindow* window) const
 	window->draw(text);
 }
 
-void DungeonGenerator::DrawDefeat(sf::RenderWindow* window) const {
+void DungeonGenerator::DrawDefeat(sf::RenderWindow* window) const
+{
         sf::Font font;
         font.loadFromFile("res/arial.ttf");
         sf::Text text("YOU ARE \n   DEAD!", font);
         text.setFillColor(sf::Color::Red);
         text.setPosition({60, 100});
         text.setCharacterSize(300);
-        window->draw(text);
+		window->draw(text);
 }
 
 void DungeonGenerator::Reset()

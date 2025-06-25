@@ -30,7 +30,7 @@ void Room::DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::
 	window->draw(shape);
 }
 
-void Room::DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset)
+void Room::DrawRoom(sf::RenderWindow* window, sf::Vector2f offset)
 {
 	offset.x += x;
 	offset.y -= y;

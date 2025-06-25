@@ -23,7 +23,7 @@ class Room
  public:
   Room(int x, int y, int distFromStart);
   void DrawLayout(sf::RenderWindow* window, int index, sf::Color color, sf::Vector2f maxSize) const;
-  void DrawRoom(sf::RenderWindow* window, int index, sf::Vector2f offset);
+  void DrawRoom(sf::RenderWindow* window, sf::Vector2f offset);
   void AddAdjacentRoom(int index, sf::Vector2i position);
   void InitializeMap();
   std::string GetMapFileNameByDoors();
